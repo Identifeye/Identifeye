@@ -10,9 +10,10 @@ if __name__ == '__main__':
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     messages_pb2_grpc.add_IdentifeyeServiceServicer_to_server(IdentifeyeService(), server)
     server.add_insecure_port('[::]:50051')
+    server.start()
     print('Server started')
     try:
         while True:
-            time.sleep(9999);
+            time.sleep(9999)
     except KeyboardInterrupt:
         server.stop(0)
