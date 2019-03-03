@@ -8,6 +8,7 @@ message DataPoint {
   string ip_location_hash = 4;
   bool is_banned = 5;
   int32 active_playtime = 6;
+  string uuid_hash = 7;
 }
 
 message BulkData {
