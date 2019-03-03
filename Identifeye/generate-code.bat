@@ -1,1 +1,0 @@
-python -m grpc_tools.protoc --python_out=src --grpc_python_out=src --proto_path=../Protos messages.proto
