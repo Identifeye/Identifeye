@@ -104,12 +104,6 @@ venv.bak/
 .mypy_cache/
 
 
-# Visual Studio
-*.suo
-*.sln
-*.pyproj
-
-
 
 
 
