@@ -2,6 +2,10 @@
 using Identifeye;
 using System.Threading;
 using IdentifeyeCSharp;
+using CsvHelper;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Test
 {
@@ -11,21 +15,20 @@ namespace Test
         {
             Console.WriteLine("Starting...");
             var client = new Client("127.0.0.1:50051");
-            Console.WriteLine("Started pinging");
-            while(true)
+            Console.Write("Enter a CSV file to import: ");
+
+            List<DataPoint> data;
+            using(var reader = new StreamReader(Console.ReadLine()))
             {
-                client.SendData(new DataPoint
+                using(var CSVReader = new CsvReader(reader))
                 {
-                    AccountNameHash = "abc",
-                    ActivePlaytime = 10,
-                    CharacterNameHash = "def",
-                    IpHash = "hij",
-                    IpLocationHash = "klm",
-                    IsBanned = false
-                });
-                Console.WriteLine("Sent data");
-                Thread.Sleep(2000);
+                    data = CSVReader.GetRecords<Data>().Select(d => d.ToDataPoint()).ToList();
+                }
             }
+
+            client.SendDataBulk(data);
+
+            Console.WriteLine("Sent data");
         }
     }
 }
