@@ -38,15 +38,44 @@ class Graph:
         node.next = self.graph[dest]
         self.graph[dest] = node
 
-    # Function to print the graph
+    # Function to print the graph (in adj list format)
     def print_graph(self):
-        i = 0
-        for g in self.graph:
-            printf("Adjacency list of vertex {i}\n head".format(i), end="")
-            temp = g
+        for i in range(self.V):
+
+            # get current node
+            temp = self.graph[i]
+
+            # if no links skip
+            if(temp == None):
+                continue
+
+            print("Adjacency list of vertex {}\n head".format(i), end="")
+
             while temp:
-                # print(" -> {}".format(temp.vertex), end="")
-                #print(F" -> Node Position = {temp.vertex} : weight = {temp.weight}", end="")
+                print(F" -> Node Position = {temp.vertex} : weight = {round(temp.weight,3)}", end="")
+                temp = temp.next
+            print(" \n")
+
+    # Function to print the graph (in the given data format)
+    def print_data_matches(self, NodeArray):
+        for i in range(self.V):
+
+            # get current adjancey list node
+            temp = self.graph[i]
+
+            # if no links skip
+            if (temp == None):
+                continue
+
+            # get current data point
+            current_data = NodeArray[i]
+
+            print("Account Name {}\n".format(current_data[0]), end="")
+
+            while temp:
+
+                connected_to = NodeArray[temp.vertex]
+                print(F" -> Connected To: = {connected_to[0]} with a confidence of {round((temp.weight*100), 1)}%", end="\n")
                 temp = temp.next
             print(" \n")
             i = i + 1
