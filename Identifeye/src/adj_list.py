@@ -42,11 +42,11 @@ class Graph:
     def print_graph(self):
         i = 0
         for g in self.graph:
-            print("Adjacency list of vertex {}\n head".format(i), end="")
+            printf("Adjacency list of vertex {i}\n head".format(i), end="")
             temp = g
             while temp:
                 # print(" -> {}".format(temp.vertex), end="")
-                print(F" -> Node Position = {temp.vertex} : weight = {temp.weight}", end="")
+                #print(F" -> Node Position = {temp.vertex} : weight = {temp.weight}", end="")
                 temp = temp.next
             print(" \n")
             i = i + 1
@@ -82,22 +82,3 @@ def calculate_weights(node1, node2):
             w += weights[i]
 
     return w
-
-
-
-
-
-if __name__ == "__main__":
-    NodeArray = [["hello_gator", "Bob", "127.1.0.1", 56897, "US", True, 105],
-                 ["what_account", "Jason", "265.2.0.2", 63541, "Canada", False, 212],
-                 ["jello_pie", "Jason", "315.6.4.7", 88541, "Mexico", False, 105],
-                 ["jason_565", "Rambo", "127.1.0.1", 11115, "US", False, 2],
-                 ["not_hello_gator", "Bob", "127.1.0.1", 56897, "US", False, 5],
-                 ["random", "Ryan", "666.3.2.1", 78912, "Mexico", False, 88],
-                 ["jello_man", "Simba", "111.5.6.0", 63541, "Canada", False, 12]]
-
-    V = len(NodeArray)
-    graph = Graph(V)
-    add_edges(NodeArray, graph)
-
-graph.print_graph()

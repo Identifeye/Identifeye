@@ -9,11 +9,11 @@ class IdentifeyeService(messages_pb2_grpc.IdentifeyeServiceServicer):
     def SendData(self, request, context):
         print('Received SendData request')
         print(request)
-        graph.add_edges([request])
+        self.graph.add_edges([request])
         return messages_pb2.Response(success = True)
 
     def SendDataBulk(self, request, context):
         print('Received SendDataBulk request')
         print(request)
-        graph.add_edges(request.data)
+        self.graph.add_edges(request.data)
         return messages_pb2.Response(success = True)
