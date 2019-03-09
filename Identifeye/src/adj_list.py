@@ -22,9 +22,8 @@ class AdjNode:
 # Size of the array will be the no. of the
 # vertices "V"
 class Graph:
-    def __init__(self, vertices):
-        self.V = vertices
-        self.graph = [None] * self.V
+    def __init__(self):
+        self.graph = []
 
     # Function to add an edge in an undirected graph
     def add_edge(self, src, dest, weight):
@@ -79,6 +78,17 @@ class Graph:
                 print(F" -> Connected To: = {connected_to[0]} with a confidence of {round((temp.weight*100), 1)}%", end="\n")
                 temp = temp.next
             print(" \n")
+            i = i + 1
+
+    # goes through and adds edges to adjancey list
+    def add_edges(self, Nodes):
+        for i in range(len(NodeArray)):
+            for j in range(i + 1, len(NodeArray)):
+                # get weight of each node with others
+                w = calculate_weights(NodeArray[i], NodeArray[j])
+
+                if w >= (2 / 7):
+                    self.add_edge(i, j, w)
 
 
 # calculate the connected-ness of each node
@@ -101,32 +111,3 @@ def calculate_weights(node1, node2):
             w += weights[i]
 
     return w
-
-
-# goes through and adds edges to adjancey list
-def add_edges(NodeArray, graph):
-    for i in range(len(NodeArray)):
-        for j in range(i + 1, len(NodeArray)):
-            # get weight of each node with others
-            w = calculate_weights(NodeArray[i], NodeArray[j])
-
-            if w >= (2 / 7):
-                graph.add_edge(i, j, w)
-
-    print()
-
-
-if __name__ == "__main__":
-    NodeArray = [["hello_gator", "Bob", "127.1.0.1", 56897, "US", True, 105],
-                 ["what_account", "Jason", "265.2.0.2", 63541, "Canada", False, 212],
-                 ["jello_pie", "Jason", "315.6.4.7", 88541, "Mexico", False, 105],
-                 ["jason_565", "Rambo", "127.1.0.1", 11115, "US", False, 2],
-                 ["not_hello_gator", "Bob", "127.1.0.1", 56897, "US", False, 5],
-                 ["random", "Ryan", "666.3.2.1", 78912, "Mexico", False, 88],
-                 ["jello_man", "Simba", "111.5.6.0", 63541, "Canada", False, 12]]
-
-    V = len(NodeArray)
-    graph = Graph(V)
-    add_edges(NodeArray, graph)
-
-graph.print_data_matches(NodeArray)
