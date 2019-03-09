@@ -32,6 +32,9 @@
     <Compile Include="src\startup.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="src\utils.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\" />

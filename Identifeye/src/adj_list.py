@@ -24,6 +24,7 @@ class AdjNode:
 class Graph:
     def __init__(self):
         self.graph = []
+        self.NodeArray = []
 
     # Function to add an edge in an undirected graph
     def add_edge(self, src, dest, weight):
@@ -82,10 +83,10 @@ class Graph:
 
     # goes through and adds edges to adjancey list
     def add_edges(self, Nodes):
-        for i in range(len(NodeArray)):
-            for j in range(i + 1, len(NodeArray)):
+        for i in range(len(Nodes)):
+            for j in range(i + 1, len(Nodes)):
                 # get weight of each node with others
-                w = calculate_weights(NodeArray[i], NodeArray[j])
+                w = calculate_weights(self.NodeArray[i], self.NodeArray[j])
 
                 if w >= (2 / 7):
                     self.add_edge(i, j, w)
