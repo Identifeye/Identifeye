@@ -22,9 +22,8 @@ class AdjNode:
 # Size of the array will be the no. of the
 # vertices "V"
 class Graph:
-    def __init__(self, vertices):
-        self.V = vertices
-        self.graph = [None] * self.V
+    def __init__(self):
+        self.graph = []
 
     # Function to add an edge in an undirected graph
     def add_edge(self, src, dest, weight):
@@ -41,14 +40,26 @@ class Graph:
 
     # Function to print the graph
     def print_graph(self):
-        for i in range(self.V):
+        i = 0
+        for g in self.graph:
             print("Adjacency list of vertex {}\n head".format(i), end="")
-            temp = self.graph[i]
+            temp = g
             while temp:
                 # print(" -> {}".format(temp.vertex), end="")
                 print(F" -> Node Position = {temp.vertex} : weight = {temp.weight}", end="")
                 temp = temp.next
             print(" \n")
+            i = i + 1
+
+    # goes through and adds edges to adjancey list
+    def add_edges(self, Nodes):
+        for i in range(len(NodeArray)):
+            for j in range(i + 1, len(NodeArray)):
+                # get weight of each node with others
+                w = calculate_weights(NodeArray[i], NodeArray[j])
+
+                if w >= (2 / 7):
+                    self.add_edge(i, j, w)
 
 
 # calculate the connected-ness of each node
@@ -73,17 +84,7 @@ def calculate_weights(node1, node2):
     return w
 
 
-# goes through and adds edges to adjancey list
-def add_edges(NodeArray, graph):
-    for i in range(len(NodeArray)):
-        for j in range(i + 1, len(NodeArray)):
-            # get weight of each node with others
-            w = calculate_weights(NodeArray[i], NodeArray[j])
 
-            if w >= (2 / 7):
-                graph.add_edge(i, j, w)
-
-    print()
 
 
 if __name__ == "__main__":
